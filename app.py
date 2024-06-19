@@ -6,7 +6,10 @@
 # 🐍 Works on python
 # 📂 Tokens for download file
 
-#Vesrion: 1.0 
+#Vesrion: 1.0.1
+#Changelog:
+# - Patch 
+#   - Deletes filename in direct link
 #Author: github.com/nikitapro225
 #TG: t.me/cho_ghg
 
@@ -49,15 +52,14 @@ def upload_file():
 def bg():
     return open('bg.png', 'rb').read()
 
-@app.route('/<token>/<filename>') #Download
+@app.route('/<token>') #Download
 def get_file_info(token, filename):
     file_dir = os.path.join(UPLOAD_FOLDER, token)
     if os.path.isdir(file_dir):
         files = os.listdir(file_dir) #Files in folder
         if files:
             file_name = files[0] #File
-            if file_name == filename: #Check filenames
-                return send_from_directory(file_dir + '\\', filename) #Send file
+            return send_from_directory(file_dir + '\\', filename) #Send file
             else:
                 return 'File not found', 404
         else:
