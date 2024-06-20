@@ -44,7 +44,7 @@ def upload_file():
         os.makedirs(os.path.join(UPLOAD_FOLDER, token), exist_ok=True)
         # Saves file
         file.save(file_path)
-        file_url = f'https://{url}/{token}/{file.filename}'
+        file_url = f'https://{url}/{token}/'
         return jsonify({'token': token, 'file': file.filename, 'url': file_url})
     return render_template('index.html')
 
